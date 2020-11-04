@@ -14,7 +14,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh(script : "docker rmi $(docker images -q) -f")
+                    sh(script : 'docker rmi $(docker images -q) -f')
                     CommitHash = sh (script : "git log -n 1 --pretty=format:'%H'", returnStdout: true)
                     builderDocker = docker.build("corrykalam/jenkins-frontend-project:${CommitHash}")
                 }
